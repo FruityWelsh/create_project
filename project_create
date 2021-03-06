@@ -6,6 +6,7 @@
 
 set -o errexit
 set -o nounset
+#set -o xtrace
 
 trap "echo USAGE: $0 PROJECT_NAME" EXIT
 
@@ -19,19 +20,20 @@ trap - EXIT
 echo "Creating Project: ${PROJECT_NAME}"
 mkdir ${PROJECT_DIR}
 cd ${PROJECT_DIR}
+git init
 
 echo "Creating CAD Directory"
-mdkir ${PROJECT_DIR}/cad
+mkdir ${PROJECT_DIR}/cad
 
 ## Uses https://techoverflow.net/scripts/kicad-init.sh
 echo "Creating KiCad Project"
 bash kicad-init.sh ${PROJECT_NAME}
 
-if [ ${PROJECT_REPO_TYPE} -eq github ];then
+if [ "${PROJECT_REPO_TYPE}" == "github" ];then
     ## Uses https://cli.github.com/
     echo "Creating GitHub Project"
-    gh repo create #{PROJECT_NAME} --public 
-elif [ ${PROJECT_REPO_TYPE} -eq gitlab ];then
+    gh repo create ${PROJECT_NAME} --public --confirm
+elif [ "${PROJECT_REPO_TYPE}" == "gitlab" ];then
     ## Uses https://github.com/python-gitlab/python-gitlab
     echo "Creating Gitlab Project"
     gitlab project create --name ${PROJECT_NAME}
