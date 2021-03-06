@@ -3,6 +3,8 @@
 Creates and setups dirs for open hardware projects.
 
 Requirements:
+* A POSIX shell (i.e. [bash](https://www.gnu.org/software/bash/))
+* [kicad](https://kicad.org/)
 * [gh](https://cli.github.com/)
 * [python-gitlab](https://python-gitlab.readthedocs.io/en/stable/index.html)
 * [kicad-init.sh](https://techoverflow.net/scripts/kicad-init.sh)
