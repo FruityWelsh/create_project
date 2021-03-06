@@ -21,3 +21,5 @@ ENV_VARS:
 PROJECT_DIR_BASE="${PROJECT_DIR_BASE:-${HOME}/Projects}"
 PROJECT_REPO_TYPE="${PROJECT_REPO_TYPE:-github}"
 ```
+
+Contributing commits must be in [conventional commit style](https://www.conventionalcommits.org/en/v1.0.0/). (i.e. ```fix: changes broken code to working code``` or ```feat: adds jira support``` or ```docs: updated to include message on conventional commits```)
