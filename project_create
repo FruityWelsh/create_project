@@ -1,0 +1,39 @@
+#!/bin/bash
+
+#GNU GENERAL PUBLIC LICENSE
+#Version 3, 29 June 2007
+#Copyright © 2007 Free Software Foundation, Inc. <https://fsf.org/>
+
+set -o errexit
+set -o nounset
+
+trap "echo USAGE: $0 PROJECT_NAME" EXIT
+
+PROJECT_NAME="$1"
+PROJECT_DIR_BASE="${PROJECT_DIR_BASE:-${HOME}/Projects}"
+PROJECT_DIR="${PROJECT_DIR_BASE}/${PROJECT_NAME}"
+PROJECT_REPO_TYPE="${PROJECT_REPO_TYPE:-github}"
+
+trap - EXIT
+
+echo "Creating Project: ${PROJECT_NAME}"
+mkdir ${PROJECT_DIR}
+
+echo "Creating CAD Directory"
+mdkir ${PROJECT_DIR}/cad
+
+## Uses https://techoverflow.net/scripts/kicad-init.sh
+echo "Creating KiCad Project"
+bash kicad-init.sh ${PROJECT_NAME}
+
+if [ ${PROJECT_REPO_TYPE} -eq github ];then
+    ## Uses https://cli.github.com/
+    echo "Creating GitHub Project"
+    gh repo create #{PROJECT_NAME} --public 
+elif [ ${PROJECT_REPO_TYPE} -eq gitlab ];then
+    ## Uses https://github.com/python-gitlab/python-gitlab
+    echo "Creating Gitlab Project"
+    gitlab project create --name ${PROJECT_NAME}
+else
+    echo "\"${PROJECT_REPO_TYPE}\" is not supported"
+fi  
