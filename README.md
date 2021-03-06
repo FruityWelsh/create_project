@@ -3,9 +3,9 @@
 Creates and setups dirs for open hardware projects.
 
 Requirements:
-[gh](https://cli.github.com/)
-[python-gitlab](https://python-gitlab.readthedocs.io/en/stable/index.html)
-[kicad-init.sh](https://techoverflow.net/scripts/kicad-init.sh)
+* [gh](https://cli.github.com/)
+* [python-gitlab](https://python-gitlab.readthedocs.io/en/stable/index.html)
+* [kicad-init.sh](https://techoverflow.net/scripts/kicad-init.sh)
 
 For github usage ```gh auth login``` must be ran first.
 
