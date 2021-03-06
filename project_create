@@ -18,6 +18,7 @@ trap - EXIT
 
 echo "Creating Project: ${PROJECT_NAME}"
 mkdir ${PROJECT_DIR}
+cd ${PROJECT_DIR}
 
 echo "Creating CAD Directory"
 mdkir ${PROJECT_DIR}/cad
